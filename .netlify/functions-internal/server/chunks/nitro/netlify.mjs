@@ -575,7 +575,7 @@ const handler = async function handler2(event, context) {
     const builder = await import('@netlify/functions').then(
       (r) => r.builder || r.default.builder
     );
-    const ttl = typeof routeRules.cache.swr === "number" ? routeRules.cache.swr : 30;
+    const ttl = typeof routeRules.cache.swr === "number" ? routeRules.cache.swr : 60;
     const swrHandler = routeRules.cache.swr ? (event2, context2) => lambda(event2, context2).then((r) => ({ ...r, ttl })) : lambda;
     return builder(swrHandler)(event, context);
   }
